@@ -1,250 +1,201 @@
-﻿# Fuel Pre-Order and Pickup App
+# Fullstack Application
 
-A production-ready, React Native mobile app for pre-ordering fuel for pickup at partnered stations worldwide, featuring Mapbox integration and a modern black-and-green light theme.
+A modern fullstack web application built with Node.js, Express, MongoDB, and React.
 
-##  Features
+## Features
 
-- **Station Finder**: Interactive Mapbox maps with real-time station data
-- **Pre-Order System**: Book fuel with QR code pickup
-- **Multi-Currency Payments**: Stripe integration with global payment methods
-- **Loyalty Rewards**: Points system with tiered benefits
-- **EV Charging**: Electric vehicle charging station reservations
-- **Multi-Language Support**: i18n with 5+ languages
-- **Push Notifications**: Firebase Cloud Messaging
-- **Admin Dashboard**: Web-based management interface
+- 🔐 **Authentication**: JWT-based authentication with secure password hashing
+- 📝 **Blog System**: Create, read, update, and delete posts
+- 👤 **User Management**: User profiles and role-based access control
+- ❤️ **Social Features**: Like posts and view engagement metrics
+- 🎨 **Modern UI**: Responsive design with Tailwind CSS
+- 🔍 **Search**: Search functionality for posts
+- 📱 **Mobile Friendly**: Responsive design that works on all devices
 
-##  Theme
-
-- **Primary**: Black (#1A1A1A)
-- **Accent**: Green (#00FF00) 
-- **Secondary**: White (#FFFFFF)
-- **Text**: Black (#1A1A1A) on white backgrounds
-
-##  Tech Stack
-
-### Frontend
-- React Native (iOS/Android)
-- React Navigation
-- Mapbox GL
-- Redux Toolkit
-- Firebase (FCM, Auth)
-- Stripe SDK
+## Tech Stack
 
 ### Backend
-- Node.js + Express.js
-- MongoDB + Mongoose
-- JWT Authentication
-- Redis (Caching)
-- Docker
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - MongoDB object modeling
+- **JWT** - JSON Web Tokens for authentication
+- **bcryptjs** - Password hashing
+- **express-validator** - Input validation
 
-### Third-Party Integrations
-- Mapbox API
-- Stripe Payments
-- Firebase Cloud Messaging
-- Twilio SMS
-- SendGrid Email
+### Frontend
+- **React** - UI library
+- **Vite** - Build tool and dev server
+- **React Router** - Client-side routing
+- **Tailwind CSS** - Utility-first CSS framework
+- **Axios** - HTTP client
+- **React Hook Form** - Form handling
+- **React Hot Toast** - Notifications
 
-##  Quick Start
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+
-- React Native CLI
-- MongoDB
-- iOS Simulator / Android Studio
-- Mapbox Access Token
+
+- Node.js (v16 or higher)
+- MongoDB (local or cloud instance)
+- npm or yarn
 
 ### Installation
 
-1. **Clone and Install**
-```bash
-git clone <repository-url>
-cd fuel-preorder-app
-npm run install:all
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd fullstack-app
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm run install-all
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   # Copy the example environment file
+   cp server/.env.example server/.env
+   
+   # Edit server/.env with your configuration
+   PORT=5000
+   MONGODB_URI=mongodb://localhost:27017/fullstack-app
+   JWT_SECRET=your-super-secret-jwt-key-here
+   NODE_ENV=development
+   ```
+
+4. **Start MongoDB**
+   ```bash
+   # If using local MongoDB
+   mongod
+   ```
+
+5. **Run the application**
+   ```bash
+   # Start both frontend and backend
+   npm run dev
+   
+   # Or start them separately
+   npm run server  # Backend on port 5000
+   npm run client  # Frontend on port 3000
+   ```
+
+6. **Open your browser**
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:5000
+
+## API Endpoints
+
+### Authentication
+- `POST /api/auth/register` - Register a new user
+- `POST /api/auth/login` - Login user
+- `GET /api/auth/me` - Get current user
+
+### Users
+- `GET /api/users` - Get all users (protected)
+- `GET /api/users/:id` - Get user by ID (protected)
+- `PUT /api/users/:id` - Update user (protected)
+- `DELETE /api/users/:id` - Delete user (admin only)
+
+### Posts
+- `GET /api/posts` - Get all posts (with pagination and search)
+- `GET /api/posts/:id` - Get post by ID
+- `POST /api/posts` - Create new post (protected)
+- `PUT /api/posts/:id` - Update post (protected)
+- `DELETE /api/posts/:id` - Delete post (protected)
+- `POST /api/posts/:id/like` - Like/unlike post (protected)
+
+## Project Structure
+
+```
+fullstack-app/
+├── client/                 # React frontend
+│   ├── src/
+│   │   ├── components/     # Reusable components
+│   │   ├── contexts/       # React contexts
+│   │   ├── pages/          # Page components
+│   │   └── main.jsx        # Entry point
+│   ├── public/             # Static assets
+│   └── package.json
+├── server/                 # Node.js backend
+│   ├── models/             # MongoDB models
+│   ├── routes/             # API routes
+│   ├── middleware/         # Custom middleware
+│   ├── index.js            # Server entry point
+│   └── package.json
+├── package.json            # Root package.json
+└── README.md
 ```
 
-2. **Environment Setup**
-```bash
-# Copy environment files
-cp backend/.env.example backend/.env
-cp frontend/.env.example frontend/.env
+## Available Scripts
 
-# Update with your API keys
-# MAPBOX_ACCESS_TOKEN=pk.your_token_here
-# STRIPE_SECRET_KEY=sk_test_your_key_here
-# MONGODB_URI=mongodb://localhost:27017/fuelapp
+### Root Level
+- `npm run dev` - Start both frontend and backend
+- `npm run install-all` - Install all dependencies
+- `npm run build` - Build frontend for production
+- `npm start` - Start production server
+
+### Backend (server/)
+- `npm run dev` - Start development server with nodemon
+- `npm start` - Start production server
+
+### Frontend (client/)
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+
+## Environment Variables
+
+### Backend (.env)
 ```
-
-3. **Database Setup**
-```bash
-cd backend
-npm run seed
-```
-
-4. **Start Development**
-```bash
-# Start both frontend and backend
-npm run dev
-
-# Or start individually
-npm run start:backend  # Backend on :3000
-npm run start:frontend # React Native Metro
-```
-
-5. **Run on Device**
-```bash
-# iOS
-cd frontend
-npx react-native run-ios
-
-# Android
-cd frontend
-npx react-native run-android
-```
-
-##  Project Structure
-
-```
-fuel-preorder-app/
- frontend/                 # React Native App
-    src/
-       screens/         # App screens
-       components/      # Reusable components
-       navigation/      # React Navigation
-       services/        # API & Mapbox integration
-       store/          # Redux store
-       styles/         # Theme & styles
-    android/            # Android specific
-    ios/                # iOS specific
- backend/                 # Node.js API
-    routes/             # API routes
-    controllers/        # Business logic
-    models/             # MongoDB schemas
-    middleware/         # Auth, validation
-    utils/              # Helper functions
- database/               # Database scripts
-    schemas/            # MongoDB schemas
-    seeds/              # Sample data
- docs/                   # Documentation
-    api/                # Swagger API docs
- tests/                  # Test files
-     unit/               # Jest tests
-     e2e/                # Appium tests
-```
-
-##  Configuration
-
-### Environment Variables
-
-#### Backend (.env)
-```env
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/fullstack-app
+JWT_SECRET=your-super-secret-jwt-key-here
 NODE_ENV=development
-PORT=3000
-MONGODB_URI=mongodb://localhost:27017/fuelapp
-JWT_SECRET=your_jwt_secret
-MAPBOX_ACCESS_TOKEN=pk.your_token_here
-STRIPE_SECRET_KEY=sk_test_your_key_here
-STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret
-FCM_SERVER_KEY=your_fcm_server_key
-TWILIO_ACCOUNT_SID=your_twilio_sid
-TWILIO_AUTH_TOKEN=your_twilio_token
-SENDGRID_API_KEY=your_sendgrid_key
-REDIS_URL=redis://localhost:6379
 ```
 
-#### Frontend (.env)
-```env
-API_BASE_URL=http://localhost:3000/api
-MAPBOX_ACCESS_TOKEN=pk.your_token_here
-STRIPE_PUBLISHABLE_KEY=pk_test_your_key_here
-GOOGLE_MAPS_API_KEY=your_google_maps_key
+## Database Schema
+
+### User Model
+```javascript
+{
+  name: String (required, max 50 chars)
+  email: String (required, unique, valid email)
+  password: String (required, min 6 chars, hashed)
+  avatar: String (optional)
+  role: String (enum: 'user', 'admin', default: 'user')
+  createdAt: Date
+  updatedAt: Date
+}
 ```
 
-##  Deployment
-
-### Docker Deployment
-```bash
-# Build and run with Docker
-npm run docker:build
-npm run docker:up
-
-# Stop containers
-npm run docker:down
+### Post Model
+```javascript
+{
+  title: String (required, max 100 chars)
+  content: String (required, max 1000 chars)
+  author: ObjectId (ref: User, required)
+  tags: [String] (optional)
+  likes: [ObjectId] (ref: User)
+  isPublished: Boolean (default: false)
+  createdAt: Date
+  updatedAt: Date
+}
 ```
 
-### AWS Deployment
-```bash
-# Backend to Elastic Beanstalk
-cd backend
-eb init
-eb create production
-
-# Frontend to S3
-cd frontend
-npm run build
-aws s3 sync build/ s3://your-bucket-name
-```
-
-##  Testing
-
-```bash
-# Run all tests
-npm test
-
-# Frontend tests
-npm run test:frontend
-
-# Backend tests
-npm run test:backend
-
-# E2E tests
-cd tests/e2e
-npm run test:e2e
-```
-
-##  API Documentation
-
-API documentation is available at `/docs` when running the backend server.
-
-Key endpoints:
-- `GET /api/stations/nearby` - Find nearby fuel stations
-- `POST /api/orders` - Create fuel pre-order
-- `GET /api/orders/:id` - Get order details
-- `POST /api/payments/process` - Process payment
-
-##  Internationalization
-
-Supported languages:
-- English (en)
-- Spanish (es)
-- French (fr)
-- Arabic (ar)
-- Chinese (zh)
-
-##  Security
-
-- JWT-based authentication
-- AES-256 encryption
-- PCI-DSS compliance
-- Rate limiting
-- Input validation
-- HTTPS enforcement
-
-##  License
-
-MIT License - see LICENSE file for details.
-
-##  Contributing
+## Contributing
 
 1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-##  Support
+## License
 
-For support, email support@fuelapp.com or join our Slack channel.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
+## Support
 
-Built with  by the Fuel App Team
+If you have any questions or run into issues, please open an issue on GitHub or contact the development team.

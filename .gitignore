@@ -1,8 +1,10 @@
-﻿# Dependencies
+# Dependencies
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+*/node_modules/
+
+# Production builds
+build/
+dist/
 
 # Environment variables
 .env
@@ -11,24 +13,11 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
 # Logs
-logs
-*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
 
 # Runtime data
 pids
@@ -38,6 +27,7 @@ pids
 
 # Coverage directory used by tools like istanbul
 coverage/
+*.lcov
 
 # nyc test coverage
 .nyc_output
@@ -47,6 +37,15 @@ jspm_packages/
 
 # Optional npm cache directory
 .npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
 
 # Optional REPL history
 .node_repl_history
@@ -64,88 +63,37 @@ jspm_packages/
 .cache
 .parcel-cache
 
-# next.js build output
+# Next.js build output
 .next
 
-# nuxt.js build output
+# Nuxt.js build / generate output
 .nuxt
+dist
 
-# vuepress build output
-.vuepress/dist
+# Gatsby files
+.cache/
+public
 
-# Serverless directories
-.serverless
+# Storybook build outputs
+.out
+.storybook-out
 
-# FuseBox cache
-.fusebox/
+# Temporary folders
+tmp/
+temp/
 
-# DynamoDB Local files
-.dynamodb/
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# React Native
-# Xcode
-build/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-project.xcworkspace
-
-# Android/IntelliJ
-build/
-.idea
-.gradle
-local.properties
-*.iml
-*.hprof
-.cxx/
-
-# Bundle artifacts
-*.jsbundle
-
-# CocoaPods
-/ios/Pods/
-
-# Expo
-.expo/
-web-build/
-
-# Metro
-.metro-health-check*
-
-# Flipper
-ios/Pods/Flipper*
-
-# Temporary files created by Metro to check the health of the file watcher
-.metro-health-check*
-
-# Backend specific
-backend/uploads/
-backend/logs/
-backend/.env
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
-
-# Docker
-.dockerignore
-
-# Testing
-coverage/
-.nyc_output/
-
-# Misc
-*.tsbuildinfo
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
